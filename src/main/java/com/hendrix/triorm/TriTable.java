@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.hendrix.triorm.query.TriQuery;
 import com.hendrix.triorm.query.TriQuery.ORDER;
 import com.hendrix.triorm.utils.SSerialize;
-import com.hendrix.triorm.TriOrm;
 
 import java.util.ArrayList;
 
