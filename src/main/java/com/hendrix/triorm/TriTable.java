@@ -14,7 +14,7 @@ import com.hendrix.triorm.TriOrm;
 import java.util.ArrayList;
 
 /**
- * simple 3D <b>SQL</b> table carrier with {@code (id, data, type)} rows, that serializes/deserialize to/from database.<br/>
+ * simple 3D <b>SQL</b> table carrier with {@code (id, type, data, time_created)} rows, that serializes/deserialize to/from database.<br/>
  * <ul>
  *      <li>use {@link #addData(TriData)}, {@link #addDataWithConflict(TriData, int)}  to add data.
  *      <li>use {@link #getData(String)} to get a single data by identifier.

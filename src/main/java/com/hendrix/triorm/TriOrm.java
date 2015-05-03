@@ -8,7 +8,7 @@ import com.hendrix.triorm.query.TriQuery;
 import java.util.HashMap;
 
 /**
- * a protected singleton for 3d database.
+ * the main singleton for {@code 3D} database access.
  *
  * <ul>
  *      <li>use {@link TriOrm#query(Class)} to get {@link com.hendrix.triorm.query.TriQuery.Builder} of a table.
@@ -23,7 +23,7 @@ import java.util.HashMap;
 @SuppressWarnings("UnusedDeclaration")
 public final class TriOrm
 {
-    private static TriOrm _instance = null;
+    private static TriOrm                       _instance   = null;
     /**
      * the context
      */
