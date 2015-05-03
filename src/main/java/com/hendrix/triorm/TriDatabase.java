@@ -8,9 +8,15 @@ import com.hendrix.triorm.utils.SReflection.Meta;
 import java.util.HashMap;
 
 /**
- * immutable controller for 2D database.
- * may only be built with {@code SqlSerialData.Builder}
- * <li>use {@code this.getTable(identifier)} to get the table by id
+ * immutable 3D Database.
+ * may only be built with {@link com.hendrix.triorm.TriDatabase.Builder}.
+ * After the {@link TriDatabase} was built, it will be automatically registered
+ * in the {@link com.hendrix.triorm.TriOrm} master object, for future usage.
+ * (consult documentation of {@code TriOrm})
+ *
+ * <ul>
+ *      <li>use {@link #getTable(Class)} to get the table by id
+ * </ul>
  *
  * @see TriDatabase.Builder
  *
@@ -46,18 +52,19 @@ public class TriDatabase
     }
 
     /**
-     * get a table by it's id
+     * get a table by it's class type.
      *
-     * @param tableName     the table id/name
      * @param type          the type of Class the table handles
      * @param <T>           the type of Class the table handles
      *
      * @return the table
      */
     @SuppressWarnings("unchecked")
-    public <T extends TriData> TriTable<T> getTable(String tableName, Class<T> type)
+    public <T extends TriData> TriTable<T> getTable(Class<T> type)
     {
-        return (TriTable<T>)_mapTables.get(tableName);
+        String uniqueClassName = type.getName();
+
+        return (TriTable<T>)_mapTables.get(uniqueClassName);
     }
 
     /**
@@ -159,9 +166,11 @@ public class TriDatabase
             if(_mapTables.containsKey(tableName))
                 return this;
 
+            String uniqueClassName = type.getName();
+
             TriTable<T> triTable = new TriTable<>(_ctx, _dbName, tableName, _version);
 
-            _mapTables.put(tableName, triTable);
+            _mapTables.put(uniqueClassName, triTable);
 
             return this;
         }

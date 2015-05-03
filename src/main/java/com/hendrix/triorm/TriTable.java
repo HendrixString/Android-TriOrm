@@ -9,13 +9,30 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.hendrix.triorm.query.TriQuery;
 import com.hendrix.triorm.query.TriQuery.ORDER;
 import com.hendrix.triorm.utils.SSerialize;
+import com.hendrix.triorm.TriOrm;
 
 import java.util.ArrayList;
 
 /**
- * simple <b>SQL</b> table carrier with {@code (id, data, type)} rows, that serializes/deserialize to/from database.<br/>
+ * simple 3D <b>SQL</b> table carrier with {@code (id, data, type)} rows, that serializes/deserialize to/from database.<br/>
+ * <ul>
+ *      <li>use {@link #addData(TriData)}, {@link #addDataWithConflict(TriData, int)}  to add data.
+ *      <li>use {@link #getData(String)} to get a single data by identifier.
+ *      <li>use {@link #delete(String)}, {@link #delete(TriData)}  to delete data.
+ *      <li>use {@link #getQueryBuilder()} to get the query builder.
+ *      <li>there are also other query methods, but all are based on {@link #getQueryBuilder()}.
+ * </ul>
  *
- * @param <T> the Class type of the object to store, must implement {@link java.io.Serializable}
+ * <b>Notes:</b>
+ *
+ * the recommended way to access a table is with {@link TriOrm} object.
+ * <ul>
+ *      <li>use {@link TriOrm#query(Class)} to get {@link #getQueryBuilder()} of a table.
+ *      <li>use {@link TriOrm#load(Class, String)} to get a single Data of a table by identifier.
+ *      <li>use {@link TriOrm#table(Class)} to get {@link com.hendrix.triorm.TriTable} reference of the class type.
+ * </ul>
+ *
+ * @param <T> the Class type of the object to store, must implement {@link com.hendrix.triorm.TriData}
  *
  * @author Tomer Shalev
  */
@@ -36,7 +53,7 @@ public class TriTable<T extends TriData> extends SQLiteOpenHelper
     /**
      * get the query builder
      *
-     * @return the query builder
+     * @return the {@link TriQuery.Builder} reference
      */
     synchronized public TriQuery.Builder<T> getQueryBuilder() {
         return _queryBuilder.reset();

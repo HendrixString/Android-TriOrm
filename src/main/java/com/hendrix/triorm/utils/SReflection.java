@@ -7,6 +7,8 @@ import com.hendrix.triorm.errors.TableAnnotationException;
 import java.lang.annotation.Annotation;
 
 /**
+ * a Helper class for {@code Reflections} utilities
+ *
  * @author Tomer Shalev
  */
 @SuppressWarnings("UnusedDeclaration")

@@ -10,8 +10,13 @@ import java.util.HashMap;
 
 /**
  * a protected singleton for 3d database.
- * may only be built with {@code SqlSerialData.Builder}
- * <li>use {@code this.getTable(identifier)} to get the table by id
+ *
+ * <ul>
+ *      <li>use {@link TriOrm#query(Class)} to get {@link com.hendrix.triorm.query.TriQuery.Builder} of a table.
+ *      <li>use {@link TriOrm#load(Class, String)} to get a single Data of a table by identifier.
+ *      <li>use {@link TriOrm#table(Class)} to get {@link com.hendrix.triorm.TriTable} reference of the class type.
+ *      <li>use {@link com.hendrix.triorm.TriOrm#newDatabase()} to get a new {@link com.hendrix.triorm.TriDatabase.Builder} instance.
+ * </ul>
  *
  * @author Tomer Shalev
  *
@@ -74,6 +79,16 @@ public class TriOrm
      */
     public static <T extends TriData> TriQuery.Builder<T> query(Class<T> type) {
         return table(type).getQueryBuilder();
+    }
+
+    /**
+     * get a new Database builder object. you can also use:
+     * {@code new TriDatabase.Builder(..)} yourself.
+     *
+     * @return {@link com.hendrix.triorm.TriDatabase.Builder}
+     */
+    public static TriDatabase.Builder newDatabase() {
+        return new TriDatabase.Builder(null);
     }
 
     /**

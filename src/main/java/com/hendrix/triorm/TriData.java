@@ -7,7 +7,11 @@ import com.hendrix.triorm.interfaces.IId;
 import java.io.Serializable;
 
 /**
- * Base model for 3D database. extend this
+ * Base model for 3D database. extend this.
+ * also, it is recommended to use the {@link com.hendrix.triorm.annotations.TriTable}
+ * annotation for meta-data embedding.
+ *
+ * @see com.hendrix.triorm.annotations.TriTable
  *
  * @author Tomer Shalev
  */
@@ -109,12 +113,6 @@ public abstract class TriData implements Serializable, IId {
     @Override
     public String toString() {
         return "TriData:: (id->" + getId() + ", type->" + getType() +", time_created->" + getTimeCreated() + ")";
-    }
-
-    public String className()
-    {
-        String na = getClass().getName();
-        return na;
     }
 
     /**

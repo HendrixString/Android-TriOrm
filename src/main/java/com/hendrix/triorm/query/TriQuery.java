@@ -11,9 +11,11 @@ import com.hendrix.triorm.utils.SSerialize;
 import java.util.ArrayList;
 
 /**
- * a SQL query builder according to the id, type, time_created fields of {@link com.hendrix.triorm.TriTable.Columns}
+ * a {@code SQL} query builder according to the identifier, type, time_created fields of {@link com.hendrix.triorm.TriTable.Columns}
  *
  * @param <T> the data type
+ *
+ * @author Tomer Shalev
  */
 @SuppressWarnings("UnusedDeclaration")
 public class TriQuery<T extends TriData> {
@@ -97,6 +99,10 @@ public class TriQuery<T extends TriData> {
      * the builder of the query
      *
      * @param <E> the data type
+     *
+     * @see com.hendrix.triorm.query.TriQuery
+     *
+     * @author Tomer Shalev
      */
     public static class Builder<E extends TriData> {
 
