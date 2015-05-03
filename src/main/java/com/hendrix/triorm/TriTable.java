@@ -362,7 +362,7 @@ public class TriTable<T extends TriData> extends SQLiteOpenHelper
      */
     public int getDataCount()
     {
-        String 					countQuery 	= "SELECT  * FROM " + TABLE_NAME;
+        String 					countQuery 	= "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase 	db 					= this.getReadableDatabase();
         Cursor 					cursor 			= db.rawQuery(countQuery, null);
 
