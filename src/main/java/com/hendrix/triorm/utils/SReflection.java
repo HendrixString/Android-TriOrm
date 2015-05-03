@@ -2,7 +2,7 @@ package com.hendrix.triorm.utils;
 
 import com.hendrix.triorm.TriData;
 import com.hendrix.triorm.annotations.TriTable;
-import com.hendrix.triorm.errors.TableAnnotationException;
+import com.hendrix.triorm.exceptions.TableAnnotationException;
 
 import java.lang.annotation.Annotation;
 
@@ -25,7 +25,7 @@ public class SReflection {
      *
      * @return a {@link com.hendrix.triorm.utils.SReflection.Meta}
      *
-     * @throws com.hendrix.triorm.errors.TableAnnotationException if the class is not annotated, or has more than one
+     * @throws com.hendrix.triorm.exceptions.TableAnnotationException if the class is not annotated, or has more than one
      *                                                            {@link com.hendrix.triorm.annotations.TriTable} annotation
      */
     public static <T extends TriData> Meta  extractMetadata(Class<T> cls) {

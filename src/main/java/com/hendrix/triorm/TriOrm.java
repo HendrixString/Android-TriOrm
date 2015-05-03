@@ -2,9 +2,8 @@ package com.hendrix.triorm;
 
 import android.content.Context;
 
-import com.hendrix.triorm.errors.TableNotExistException;
+import com.hendrix.triorm.exceptions.TableNotExistException;
 import com.hendrix.triorm.query.TriQuery;
-import com.hendrix.triorm.TriTable;
 
 import java.util.HashMap;
 
@@ -22,7 +21,7 @@ import java.util.HashMap;
  *
  */
 @SuppressWarnings("UnusedDeclaration")
-public class TriOrm
+public final class TriOrm
 {
     private static TriOrm _instance = null;
     /**
@@ -101,7 +100,7 @@ public class TriOrm
     }
 
     /**
-     * add tables to the ORM. this is used by {@link com.hendrix.triorm.TriDatabase}
+     * add tables to the ORM. this is used by {@link com.hendrix.triorm.TriDatabase} and therefore is protected access.
      *
      * @param tables a Map Collection between class names into {@link com.hendrix.triorm.TriTable}
      */
@@ -117,7 +116,7 @@ public class TriOrm
      *
      * @return the table
      *
-     * @throws com.hendrix.triorm.errors.TableNotExistException if the table was not registered.
+     * @throws com.hendrix.triorm.exceptions.TableNotExistException if the table was not registered.
      */
     @SuppressWarnings("unchecked")
     protected <T extends TriData> TriTable<T> getTable(Class<T> type)

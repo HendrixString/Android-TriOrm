@@ -1,6 +1,4 @@
-package com.hendrix.triorm.errors;
-
-import com.hendrix.triorm.TriData;
+package com.hendrix.triorm.exceptions;
 
 /**
  * Exception that is raised when trying to access a table that was not registered.

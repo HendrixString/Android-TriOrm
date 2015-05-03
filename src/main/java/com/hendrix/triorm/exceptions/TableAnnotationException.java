@@ -1,4 +1,4 @@
-package com.hendrix.triorm.errors;
+package com.hendrix.triorm.exceptions;
 
 /**
  * Meta-data extraction exception.
