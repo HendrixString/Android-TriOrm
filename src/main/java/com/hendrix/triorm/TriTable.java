@@ -128,7 +128,8 @@ public class TriTable<T extends TriData> extends SQLiteOpenHelper
           + TABLE_NAME + "("
           + Columns.KEY_ID.key()      + " TEXT PRIMARY KEY, "
           + Columns.KEY_TYPE.key()    + " STRING, "
-          + Columns.KEY_DATA.key()    + " TEXT, "
+          //+ Columns.KEY_DATA.key()    + " TEXT, "
+          + Columns.KEY_DATA.key()    + " BLOB, "
           + Columns.KEY_CREATED.key() + " INTEGER" + ")";
 
         db.execSQL(CREATE_TABLE_COMMAND);
@@ -172,7 +173,8 @@ public class TriTable<T extends TriData> extends SQLiteOpenHelper
 
         values.put(Columns.KEY_ID.key(),      data.getId());
         values.put(Columns.KEY_TYPE.key(),    data.getType());
-        values.put(Columns.KEY_DATA.key(),    SSerialize.serialize(data));
+        //values.put(Columns.KEY_DATA.key(),    SSerialize.serialize(data));
+        values.put(Columns.KEY_DATA.key(),    SSerialize.serializeToByteArray(data));
         values.put(Columns.KEY_CREATED.key(), data.getTimeCreated());
 
         if(data.getId() == null)
@@ -200,7 +202,6 @@ public class TriTable<T extends TriData> extends SQLiteOpenHelper
      * @param id the id of the data
      * @return the data
      */
-    @SuppressWarnings("unchecked")
     public T getData(String id)
     {
         SQLiteDatabase 	db 			= this.getReadableDatabase();
@@ -212,7 +213,8 @@ public class TriTable<T extends TriData> extends SQLiteOpenHelper
 
         cursor.moveToFirst();
 
-        T res                   = (T) SSerialize.deserialize(cursor.getString(0));
+        //T res                   = SSerialize.deserialize(cursor.getString(0)); ******
+        T res                   = SSerialize.deserialize(cursor.getBlob(0));
 
         cursor.close();
 
@@ -314,7 +316,7 @@ public class TriTable<T extends TriData> extends SQLiteOpenHelper
 
         values.put(Columns.KEY_ID.key(),      data.getId());
         values.put(Columns.KEY_TYPE.key(),    data.getType());
-        values.put(Columns.KEY_DATA.key(),    SSerialize.serialize(data));
+        values.put(Columns.KEY_DATA.key(),    SSerialize.serializeToByteArray(data));
         values.put(Columns.KEY_CREATED.key(), data.getTimeCreated());
 
         // updating row

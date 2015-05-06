@@ -84,7 +84,8 @@ public class TriQuery<T extends TriData> {
 
         if (cursor.moveToFirst()) {
             do {
-                String data 			  = cursor.getString(0);
+               // String data 			  = cursor.getString(0); *****
+                byte[] data 			  = cursor.getBlob(0);
 
                 listData.add((T) SSerialize.deserialize(data));
             } while (cursor.moveToNext());

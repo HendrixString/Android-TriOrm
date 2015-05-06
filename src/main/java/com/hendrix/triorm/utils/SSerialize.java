@@ -7,30 +7,42 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 /**
- * static methods for serializing and deserialize
+ * Helper class utilities for {@code serializing} and {@code deserialize} {@code Typed} objects into/from
+ * {@code byte arrays} and {@code base64 encoded} strings.
+ *
  * @author Tomer Shalev
  */
+@SuppressWarnings("UnusedDeclaration")
 public class SSerialize {
-
-	/*
-	 * You can use DeflatorOutputStream and InflatorInputStream to compress the stream.
-			If you can I would suggest using a more compact serialization format such as JSon, 
-			or Exernalizable or your own binary format. This is because default Java Serialization is relatively verbose. 
-			e.g. one Integer uses over 80 bytes.
-	 * 
-	 */
 
     private SSerialize() {
     }
 
     /**
-     * Serialize a <code>Serializable</code> object -> <code>ByteArray</code> -> <code>Base64 Encoded</code>
-     * @param obj <code>Serializable</code> object
-     * @return Base64 Encode
+     * Serialize a {@link Serializable} object -> {@code byte[]} -> {@code Base64 Encoded string}
+     *
+     * @param obj {@link Serializable} object
+     * @param <T> parameter type that extends {@link Serializable}
+     *
+     * @return {@code Base64 Encoded string}
      */
-    static public String serialize(Object obj)
+    static public<T extends Serializable> String serialize(T obj)
+    {
+        return Base64.encodeToString(serializeToByteArray(obj), Base64.DEFAULT );
+    }
+
+    /**
+     * Serialize a {@link Serializable} object -> {@code byte[]}
+     *
+     * @param obj {@link Serializable} object
+     * @param <T> parameter type that extends {@link Serializable}
+     *
+     * @return {@code byte array}
+     */
+    static public<T extends Serializable> byte[] serializeToByteArray(T obj)
     {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
@@ -42,31 +54,45 @@ public class SSerialize {
             // TODO: handle exception
         }
 
-        return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT );
+        return baos.toByteArray();
     }
 
     /**
-     * Deserialize a <code>Base64 Encoded</code> String -> <code>ByteArray</code> -> <code>Object</code>
-     * @param str <code>Base64 Encoded</code> String
-     * @return <code>String</code>
+     * DeSerializes a {@code Base64 Encoded string} -> {@code byte[]} -> {@link Serializable} Typed Object.
+     *
+     * @param str {@code Base64 Encoded string}
+     * @param <T> parameter type that extends {@link Serializable}
+     *
+     * @return {@link Serializable} Typed Object.
      */
-    static public Object deserialize(String str)
+    static public <T extends Serializable> T deserialize(String str)
     {
-        byte [] data 					= Base64.decode(str, Base64.DEFAULT);
+        byte[] data 					= Base64.decode(str, Base64.DEFAULT);
 
-        ObjectInputStream ois	=	null;
-        Object o 							= null;
+        return deserialize(data);
+    }
+
+    /**
+     * De-Serializes a {@code byte[]} -> {@link Serializable} Typed Object.
+     *
+     * @param data byte array
+     * @param <T> parameter type that extends {@link Serializable}
+     *
+     * @return {@link Serializable} Typed Object.
+     */
+    @SuppressWarnings("unchecked")
+    static public <T extends Serializable> T deserialize(byte [] data)
+    {
+        ObjectInputStream ois;
+        T o 							= null;
 
         try {
 
             ois 									= new ObjectInputStream(new ByteArrayInputStream(  data ) );
-            o   									= ois.readObject();
+            o   									= (T)ois.readObject();
             ois.close();
 
-        } catch (IOException e) {
-            // TODO: handle exception
-        }
-        catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             // TODO: handle exception
         }
 
