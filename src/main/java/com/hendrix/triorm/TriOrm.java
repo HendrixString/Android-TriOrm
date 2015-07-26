@@ -17,6 +17,9 @@ import java.util.HashMap;
  *      <li>use {@link com.hendrix.triorm.TriOrm#newDatabase()} to get a new {@link com.hendrix.triorm.TriDatabase.Builder} instance.
  * </ul>
  *
+ * TODO:
+ * - add a method to get all the tables of a specific database by name.
+ *
  * @author Tomer Shalev
  *
  */
@@ -109,7 +112,9 @@ public final class TriOrm
     }
 
     /**
-     * get a table by it's id
+     * get a table by it's identifier from any database that was loaded.
+     * table names a are unique, since the class type is used. Therefore,
+     * client does not have to specify database name.
      *
      * @param type          the type of Class the table handles
      * @param <T>           the type of Class the table handles

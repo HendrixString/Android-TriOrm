@@ -79,13 +79,17 @@ public class TriQuery<T extends TriData> {
 
         Cursor cursor 	        = db.query(_ssd.TABLE_NAME(), new String[] {Columns.KEY_DATA.key() }, _rawQueryString, null, null, null, orderBy, limit);
 
+        int a  = cursor.getCount();
+
         if(cursor==null || (cursor.getCount()==0))
             return listData;
 
         if (cursor.moveToFirst()) {
             do {
                // String data 			  = cursor.getString(0); *****
-                byte[] data 			  = cursor.getBlob(0);
+                byte[] data 			  =                 cursor.getBlob(0);
+
+                Object dd = SSerialize.deserialize(data);
 
                 listData.add((T) SSerialize.deserialize(data));
             } while (cursor.moveToNext());

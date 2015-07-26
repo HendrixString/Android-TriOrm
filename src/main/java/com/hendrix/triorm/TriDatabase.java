@@ -224,7 +224,7 @@ public class TriDatabase
             if(!_dbName.equals(meta.getDbName()))
                 throw new RuntimeException("Table name " + meta.getDbName() + " is not consistent with current name " + _dbName + "caused by the following class" + meta.getTableType().getName());
         }
-    }
 
+    }
 
 }
