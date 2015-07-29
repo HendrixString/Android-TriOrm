@@ -2,12 +2,14 @@
 a 3d database ORM experiment for Android. (used in two commercial projects).
 
 ### Explanation
-TriOrm is a very light and efficient `ORM` with partial `SQL` wrapping, with the following theme:
+`TriOrm` is a very light, simple and efficient `ORM` with partial `SQL` wrapping, with the following theme:
 * every Object (`TriData` extension) is serialized and saved in the database.
 * you can only query by three fields: `id`, `time_created` and `type`.
 * familiar no fuss Builder pattern to construct database.
 * easy API to query, save and load typed objects.
 * a very small usage of annotation(Optional).
+* no learning curve whatsoever, no Boiler-plate code.
+* Database is ready to use in less than couple of minutes.
 
 ### construct your Tables
 Simply extend `TriData` with the following annotations(Optional).
@@ -38,9 +40,9 @@ public class Location extends TriData {
 ```
 
 every `TriData` has the following indexed/query-able properties with getters/setters:
-* setId(..) - you can set the id or it will be set automatically for you.
-* setType(..) - some auxiliary field.
-* setTimeCreated(..) - also set-up for you by default.
+* `setId(..)` - you can set the id or it will be set automatically for you.
+* `setType(..)` - some auxiliary field.
+* `setTimeCreated(..)` - also set-up for you by default.
 
 ### construct your Database
 constructing a database takes one line of code
@@ -56,6 +58,7 @@ new TriDatabase.Builder(this).name("myDataBase").addTable("user", User.class).ad
 ```
 
 ### Saving into your Database
+Simply invoke the `save()` method on your extended `TriData` object.
 ```
 User user       = new User();
 
@@ -68,7 +71,7 @@ user.lastName   = "Hendrix";
 user.save();
 ```
 
-### loading from your Database
+### loading a single object from your Database
 Simply use the `TriOrm.load(..)` Singleton and use your typed object.
 ```
 User user = TriOrm.load(User.class, "theDude");
