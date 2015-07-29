@@ -10,6 +10,7 @@ a 3d database ORM experiment for Android. (used in two commercial projects).
 * a very small usage of annotation(Optional).
 * no learning curve whatsoever, no Boiler-plate code.
 * Database is ready to use in less than couple of minutes.
+* everything is typed.
 
 ### construct your Tables
 Simply extend `TriData` with the following annotations(Optional).
