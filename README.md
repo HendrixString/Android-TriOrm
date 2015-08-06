@@ -1,6 +1,9 @@
 # Android-TriOrm
 a 3d database ORM experiment for Android. (used in two commercial projects).
 
+## How to use
+simply fork or download the project, you can also download and create `.aar` file yourself.
+
 ### Explanation
 `TriOrm` is a very light, simple and efficient `ORM` with partial `SQL` wrapping, with the following theme:
 * every Object (`TriData` extension) is serialized and saved in the database.
