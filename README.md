@@ -1,6 +1,6 @@
 # Android-TriOrm
 a 3d database ORM experiment for Android. (used in two commercial projects).
-based around small tables concept and JVM Serialization.
+based around small tables concept and `JVM Serialization`.
 
 ## How to use
 simply fork or download the project, you can also download and create `.aar` file yourself.
@@ -15,7 +15,7 @@ simply fork or download the project, you can also download and create `.aar` fil
 * no learning curve whatsoever, no Boiler-plate code.
 * Database is ready to use in less than couple of minutes.
 * everything is typed.
-* most of the presistent is carried by JVM serialization and minimal small SQL table.
+* most of the presistent is carried by `JVM Serialization` and minimal small SQL table.
 
 ### construct your Model/Tables
 Simply extend `TriData` with the following annotations(Optional).
@@ -110,6 +110,7 @@ there are important considerations for when evolving your model/tables, beware o
 
 
 ### Dependencies
+* AOSP
 
 ### Terms
 * completely free source code. [Apache License, Version 2.0.](http://www.apache.org/licenses/LICENSE-2.0)
