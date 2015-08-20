@@ -100,11 +100,13 @@ TriTable<User> table = TriOrm.table(User.class);
 
 ### Important Notes
 The presistent layer is built around `JVM Serialization`, therefore
-there are important considerations for when evolving your model/tables, beware of the folowing:
+there are important considerations for when evolving your model/tables like any
+other database solution, beware of the folowing:
 * TriData is based on `JVM Serialization`, therefore:
-  * adding new fields is compatible
-  * deleting/renaming exiting fields is not compatible, Therefore you will have
-    to implement your `writeObject/readObject`.
+  * adding new fields is compatible.
+  * deleting/renaming exiting fields is **not compatible**, Therefore you will have
+    to implement your `writeObject/readObject` and be smart about it.
+  * adding new methods, altering previous methods is incompatible.
 * look here for more info [Durable Java: Serialization](http://macchiato.com/columns/Durable4.html)
 * I recommend using primitive types as much as possible when designing the model/table.
 
