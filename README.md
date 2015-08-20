@@ -109,6 +109,8 @@ other database solution, beware of the folowing:
   * adding new methods, altering previous methods is incompatible.
 * look here for more info [Durable Java: Serialization](http://macchiato.com/columns/Durable4.html)
 * I recommend using primitive types as much as possible when designing the model/table.
+* for best performence and compatibility control, you can experiment with `Externalizable` interface for reflection free.
+* contributions are most welcome with regards to compatiblity/performence.
 
 
 ### Dependencies
