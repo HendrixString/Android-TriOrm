@@ -1,5 +1,6 @@
 # Android-TriOrm
 a 3d database ORM experiment for Android. (used in two commercial projects).
+based around small tables concept and JVM Serialization.
 
 ## How to use
 simply fork or download the project, you can also download and create `.aar` file yourself.
@@ -14,8 +15,9 @@ simply fork or download the project, you can also download and create `.aar` fil
 * no learning curve whatsoever, no Boiler-plate code.
 * Database is ready to use in less than couple of minutes.
 * everything is typed.
+* most of the presistent is carried by JVM serialization and minimal small SQL table.
 
-### construct your Tables
+### construct your Model/Tables
 Simply extend `TriData` with the following annotations(Optional).
 ```
 @TriTable(dbName = "myDataBase", tableName = "user")
@@ -95,6 +97,17 @@ With table you can have more options and some sandbox methods.
 ```
 TriTable<User> table = TriOrm.table(User.class);
 ```
+
+### Important Notes
+The presistent layer is built around `JVM Serialization`, therefore
+there are important considerations for when evolving your model/tables, beware of the folowing:
+* TriData is based on `JVM Serialization`, therefore:
+  * adding new fields is compatible
+  * deleting/renaming exiting fields is not compatible, Therefore you will have
+    to implement your `writeObject/readObject`.
+* look here for more info [Durable Java: Serialization](http://macchiato.com/columns/Durable4.html)
+* I recommend using primitive types as much as possible when designing the model/table.
+
 
 ### Dependencies
 
