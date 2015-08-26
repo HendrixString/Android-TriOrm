@@ -2,6 +2,8 @@
 a 3d database ORM experiment for Android. (used in two commercial projects).
 based around small tables concept and `JVM Serialization`.
 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android--TriOrm-green.svg?style=flat)](https://android-arsenal.com/details/1/2293)
+
 ## How to use
 simply fork or download the project, you can also download and create `.aar` file yourself.
 
