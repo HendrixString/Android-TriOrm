@@ -29,15 +29,15 @@ public class TriDatabase
     /**
      * the context
      */
-    private Context													    _ctx 			  = null;
+    private Context     _ctx        = null;
     /**
      * the data base name
      */
-    private String													    _dbName 		= null;
+    private String      _dbName     = null;
     /**
      * the version of the database
      */
-    private int															    _version		=	0;
+    private int         _version    = 0;
 
     private HashMap<String, TriTable>           _mapTables 	= null;
 
