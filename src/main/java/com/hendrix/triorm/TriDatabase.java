@@ -88,9 +88,9 @@ public class TriDatabase
      */
     public static class Builder
     {
-        private Context													_ctx 			      = null;
-        private String													_dbName 		    = null;
-        private int															_version		    =	1;
+        private Context _ctx        = null;
+        private String  _dbName     = null;
+        private int     _version    = 1;
 
         private HashMap<String, TriTable> _mapTables 	= null;
 
