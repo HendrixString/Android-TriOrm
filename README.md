@@ -21,7 +21,7 @@ simply fork or download the project, you can also download and create `.aar` fil
 
 ### construct your Model/Tables
 Simply extend `TriData` with the following annotations(Optional).
-```
+```java
 @TriTable(dbName = "myDataBase", tableName = "user")
 public class User extends TriData {
     public String firstName = "John";
@@ -54,20 +54,20 @@ every `TriData` has the following indexed/query-able properties with getters/set
 
 ### construct your Database
 constructing a database takes one line of code
-```
+```java
 new TriDatabase.Builder(this).addTable(User.class).addTable(Location.class).build();
 
 ```
 
 and without annotations:
-```
+```java
 new TriDatabase.Builder(this).name("myDataBase").addTable("user", User.class).addTable("location", Location.class).build();
 
 ```
 
 ### Saving into your Database
 Simply invoke the `save()` method on your extended `TriData` object.
-```
+```java
 User user       = new User();
 
 user.setId("theDude");
@@ -81,13 +81,13 @@ user.save();
 
 ### loading a single object from your Database
 Simply use the `TriOrm.load(..)` Singleton and use your typed object.
-```
+```java
 User user = TriOrm.load(User.class, "theDude");
 ```
 
 ### querying from your Database
 Simply use the `TriOrm.query(..)` builder Singleton and use your typed object.
-```
+```java
 ArrayList<User> list_users = TriOrm.query(User.class).timeCreatedFrom(0).timeCreatedTo(100).type("Java programmer").build().query();
 ```
 you can query anything from the three properties: `id`, `timeCreated` and `type`.
@@ -96,7 +96,7 @@ you can query anything from the three properties: `id`, `timeCreated` and `type`
 
 Simply use the `TriOrm.table(..)` Singleton and use your typed object.
 With table you can have more options and some sandbox methods.
-```
+```java
 TriTable<User> table = TriOrm.table(User.class);
 ```
 
